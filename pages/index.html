@@ -14,13 +14,14 @@
     <link rel="stylesheet" href="../assets/css/layout.css">
     <link rel="stylesheet" href="../assets/css/components.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/animations.css">
 </head>
 <body>
     <div class="backdrop-blur">
-        <header>
+        <header class="fade-in-down">
             <nav>
                 <div class="logo">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="pulse">
                         <rect width="40" height="40" rx="8" fill="rgba(0, 122, 255, 0.1)"/>
                         <path d="M20 8L28 12V20L20 24L12 20V12L20 8Z" stroke="#007AFF" stroke-width="2"/>
                         <circle cx="20" cy="20" r="4" fill="#007AFF"/>
@@ -62,16 +63,16 @@
             <section class="tools-grid" id="tools-grid">
                 <!-- 工具卡片将通过JavaScript动态加载 -->
                 <div class="loading">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="loading-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="loading-icon rotate">
                         <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M12 2C6.47715 2 2 6.47715 2 12" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="loading-arc"/>
                     </svg>
-                    <p>Loading tools...</p>
+                    <p class="blink">Loading tools...</p>
                 </div>
             </section>
         </main>
 
-        <footer>
+        <footer class="fade-in">
             <div class="footer-content">
                 <div class="footer-logo">
                     <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,21 +83,21 @@
                     <h3>BytePilot</h3>
                 </div>
                 <div class="footer-links">
-                    <div class="footer-column">
+                    <div class="footer-column stagger-item">
                         <h4>Navigation</h4>
                         <a href="index.html">Home</a>
                         <a href="categories.html">Categories</a>
                         <a href="new.html">New Tools</a>
                         <a href="about.html">About</a>
                     </div>
-                    <div class="footer-column">
+                    <div class="footer-column stagger-item">
                         <h4>Categories</h4>
                         <a href="categories.html?category=hosting">Hosting & Deployment</a>
                         <a href="categories.html?category=seo">SEO & Analytics</a>
                         <a href="categories.html?category=ai">AI Tools</a>
                         <a href="categories.html?category=domain">Domain Services</a>
                     </div>
-                    <div class="footer-column">
+                    <div class="footer-column stagger-item">
                         <h4>Connect</h4>
                         <a href="https://twitter.com/bytepilot" target="_blank">Twitter</a>
                         <a href="https://github.com/bytepilot" target="_blank">GitHub</a>

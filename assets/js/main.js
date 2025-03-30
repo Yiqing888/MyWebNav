@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // 初始化搜索功能
   initSearch();
+
+  // 初始化页脚动画
+  initFooterAnimations();
+
+  // 添加动画监测
+  observeElements();
 });
 
 /**
@@ -19,23 +25,40 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 async function initTools() {
   try {
-    const response = await fetch('data/tools.json');
+    // 根据当前路径判断是在根目录还是pages目录
+    const pathPrefix = window.location.pathname.includes('/pages/') ? '../' : '';
+    const response = await fetch(`${pathPrefix}data/tools.json`);
     const tools = await response.json();
     
     // 获取工具列表容器
     const toolsContainer = document.getElementById('tools-grid');
     if (!toolsContainer) return;
     
-    // 清空容器
+    // 清空容器并隐藏加载状态
     toolsContainer.innerHTML = '';
     
-    // 遍历并渲染每个工具
-    tools.forEach(tool => {
+    // 遍历并渲染每个工具，添加延迟以实现交错动画
+    tools.forEach((tool, index) => {
       const toolCard = createToolCard(tool);
       toolsContainer.appendChild(toolCard);
+
+      // 添加动画
+      setTimeout(() => {
+        toolCard.classList.add('appear');
+      }, 50 * index); // 交错出现动画
     });
   } catch (error) {
     console.error('加载工具数据失败:', error);
+    
+    // 显示错误信息
+    const toolsContainer = document.getElementById('tools-grid');
+    if (toolsContainer) {
+      toolsContainer.innerHTML = `
+        <div class="error-message">
+          <p>抱歉，加载工具数据失败。请刷新页面重试。</p>
+        </div>
+      `;
+    }
   }
 }
 
@@ -110,14 +133,43 @@ function initCategoryFilters() {
  */
 function filterTools(category) {
   const toolCards = document.querySelectorAll('.tool-card');
+  let visibleCount = 0;
   
-  toolCards.forEach(card => {
-    if (category === 'all' || card.dataset.category === category) {
+  toolCards.forEach((card, index) => {
+    const shouldShow = category === 'all' || card.dataset.category === category;
+    
+    // 重置动画类
+    card.classList.remove('appear');
+    
+    if (shouldShow) {
       card.style.display = '';
+      visibleCount++;
+      
+      // 重新添加出现动画，带有交错效果
+      setTimeout(() => {
+        card.classList.add('appear');
+      }, 50 * index);
     } else {
       card.style.display = 'none';
     }
   });
+  
+  // 显示无结果提示
+  const toolsContainer = document.getElementById('tools-grid');
+  const noResultsElement = document.querySelector('.no-results');
+  
+  if (visibleCount === 0) {
+    if (!noResultsElement) {
+      const noResults = document.createElement('div');
+      noResults.className = 'no-results fade-in';
+      noResults.innerHTML = `
+        <p>该分类下暂无工具，请选择其他分类查看。</p>
+      `;
+      toolsContainer.appendChild(noResults);
+    }
+  } else if (noResultsElement) {
+    noResultsElement.remove();
+  }
 }
 
 /**
@@ -127,10 +179,31 @@ function initSearch() {
   const searchInput = document.getElementById('search-input');
   if (!searchInput) return;
   
+  // 使用防抖函数优化输入事件
+  const debouncedSearch = debounce((searchTerm) => {
+    searchTools(searchTerm);
+  }, 300);
+  
   searchInput.addEventListener('input', () => {
     const searchTerm = searchInput.value.toLowerCase().trim();
-    searchTools(searchTerm);
+    debouncedSearch(searchTerm);
   });
+}
+
+/**
+ * 防抖函数 - 优化性能
+ * @param {Function} func 要执行的函数
+ * @param {number} wait 等待时间(毫秒)
+ * @returns {Function} 防抖处理后的函数
+ */
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func.apply(this, args);
+    }, wait);
+  };
 }
 
 /**
@@ -139,15 +212,90 @@ function initSearch() {
  */
 function searchTools(searchTerm) {
   const toolCards = document.querySelectorAll('.tool-card');
+  let visibleCount = 0;
   
-  toolCards.forEach(card => {
+  // 重置分类按钮状态
+  if (searchTerm) {
+    document.querySelectorAll('.category-tabs button').forEach(btn => btn.classList.remove('active'));
+    document.querySelector('.category-tabs button[data-category="all"]').classList.add('active');
+  }
+  
+  toolCards.forEach((card, index) => {
     const toolName = card.querySelector('h3').textContent.toLowerCase();
     const toolDescription = card.querySelector('.tool-description').textContent.toLowerCase();
+    const advantages = card.querySelector('.feature-value').textContent.toLowerCase();
     
-    if (toolName.includes(searchTerm) || toolDescription.includes(searchTerm)) {
+    const shouldShow = toolName.includes(searchTerm) || 
+                        toolDescription.includes(searchTerm) || 
+                        advantages.includes(searchTerm);
+    
+    // 重置动画类
+    card.classList.remove('appear');
+    
+    if (shouldShow) {
       card.style.display = '';
+      visibleCount++;
+      
+      // 重新添加出现动画，带有交错效果
+      setTimeout(() => {
+        card.classList.add('appear');
+      }, 50 * index);
     } else {
       card.style.display = 'none';
     }
+  });
+  
+  // 显示无结果提示
+  const toolsContainer = document.getElementById('tools-grid');
+  const noResultsElement = document.querySelector('.no-results');
+  
+  if (visibleCount === 0 && searchTerm) {
+    if (!noResultsElement) {
+      const noResults = document.createElement('div');
+      noResults.className = 'no-results fade-in';
+      noResults.innerHTML = `
+        <p>未找到与"${searchTerm}"相关的工具，请尝试其他关键词。</p>
+      `;
+      toolsContainer.appendChild(noResults);
+    }
+  } else if (noResultsElement) {
+    noResultsElement.remove();
+  }
+}
+
+/**
+ * 初始化页脚的交错出现动画
+ */
+function initFooterAnimations() {
+  const staggerItems = document.querySelectorAll('.stagger-item');
+  
+  staggerItems.forEach((item, index) => {
+    setTimeout(() => {
+      item.classList.add('stagger-appear');
+    }, 100 * index + 500); // 延迟开始，并添加交错效果
+  });
+}
+
+/**
+ * 初始化交叉观察器以监测元素进入视口
+ */
+function observeElements() {
+  // 如果浏览器不支持IntersectionObserver，则直接返回
+  if (!('IntersectionObserver' in window)) return;
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in');
+        observer.unobserve(entry.target); // 只需要触发一次
+      }
+    });
+  }, {
+    threshold: 0.1 // 至少10%进入视口才触发
+  });
+  
+  // 观察需要动画的元素
+  document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    observer.observe(el);
   });
 } 
