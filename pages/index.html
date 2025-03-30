@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BytePilot - Curated Web Tools</title>
+    <link rel="canonical" href="https://bytepilot.ai" />
+    <meta name="description" content="A curated collection of the best web tools for developers, designers, and digital marketers.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- CSS 样式 -->
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+</head>
+<body>
+    <div class="backdrop-blur">
+        <header>
+            <nav>
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="rgba(0, 122, 255, 0.1)"/>
+                        <path d="M20 8L28 12V20L20 24L12 20V12L20 8Z" stroke="#007AFF" stroke-width="2"/>
+                        <circle cx="20" cy="20" r="4" fill="#007AFF"/>
+                    </svg>
+                    <h1>BytePilot</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="categories.html">Categories</a>
+                    <a href="new.html">New</a>
+                    <a href="about.html">About</a>
+                </div>
+                <div class="search-bar">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="#8E8E93" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19 19L14.65 14.65" stroke="#8E8E93" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input type="text" placeholder="Search tools..." id="search-input">
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h2>Discover the best tools for your digital workflow</h2>
+                <p>A curated collection of powerful web tools to enhance your productivity</p>
+            </section>
+
+            <section class="categories">
+                <div class="category-tabs">
+                    <button class="active" data-category="all">All</button>
+                    <button data-category="hosting">Hosting & Deployment</button>
+                    <button data-category="seo">SEO & Analytics</button>
+                    <button data-category="ai">AI Tools</button>
+                    <button data-category="domain">Domain Services</button>
+                </div>
+            </section>
+
+            <section class="tools-grid" id="tools-grid">
+                <!-- 工具卡片将通过JavaScript动态加载 -->
+                <div class="loading">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="loading-icon">
+                        <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 2C6.47715 2 2 6.47715 2 12" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="loading-arc"/>
+                    </svg>
+                    <p>Loading tools...</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="rgba(0, 122, 255, 0.1)"/>
+                        <path d="M20 8L28 12V20L20 24L12 20V12L20 8Z" stroke="#007AFF" stroke-width="2"/>
+                        <circle cx="20" cy="20" r="4" fill="#007AFF"/>
+                    </svg>
+                    <h3>BytePilot</h3>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Navigation</h4>
+                        <a href="index.html">Home</a>
+                        <a href="categories.html">Categories</a>
+                        <a href="new.html">New Tools</a>
+                        <a href="about.html">About</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Categories</h4>
+                        <a href="categories.html?category=hosting">Hosting & Deployment</a>
+                        <a href="categories.html?category=seo">SEO & Analytics</a>
+                        <a href="categories.html?category=ai">AI Tools</a>
+                        <a href="categories.html?category=domain">Domain Services</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <a href="https://twitter.com/bytepilot" target="_blank">Twitter</a>
+                        <a href="https://github.com/bytepilot" target="_blank">GitHub</a>
+                        <a href="https://linkedin.com/company/bytepilot" target="_blank">LinkedIn</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BytePilot. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module" src="../assets/js/main.js"></script>
+</body>
+</html> 

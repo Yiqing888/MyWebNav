@@ -1,0 +1,98 @@
+[
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "url": "https://vercel.com",
+    "category": "hosting",
+    "tagName": "Hosting",
+    "description": "前端云部署利器，极速全球CDN、无缝Git协作，专注Next.js与Jamstack生态，开发者首选。",
+    "advantages": "Next.js原生优化，全球智能边缘网络，Git驱动开发流",
+    "disadvantages": "高阶功能定价较高，后端服务深度不足",
+    "iconBgColor": "rgba(0, 0, 0, 0.05)",
+    "iconSvg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L22 19H2L12 2Z\" fill=\"#000000\"/></svg>"
+  },
+  {
+    "id": "supabase",
+    "name": "Supabase",
+    "url": "https://supabase.com",
+    "category": "backend",
+    "tagName": "Backend",
+    "description": "一站式实时管理PostgreSQL数据库、身份验证、存储及API工具，助力极速开发。",
+    "advantages": "强关系型数据库，全栈开源，一体化后端服务",
+    "disadvantages": "复杂查询支持较弱，第三方插件和集成生态较少",
+    "iconBgColor": "rgba(52, 211, 153, 0.1)",
+    "iconSvg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M21.5 12L12 6.5V17.5L21.5 12Z\" fill=\"#3ECF8E\"/><path d=\"M12 6.5L2.5 12L12 17.5V6.5Z\" fill=\"#3ECF8E\"/></svg>"
+  },
+  {
+    "id": "cloudflare",
+    "name": "Cloudflare",
+    "url": "https://www.cloudflare.com",
+    "category": "cdn",
+    "tagName": "CDN",
+    "description": "全球网络防护巨头，高效加速网站，智能抵御攻击，创新边缘计算，守护在线安全与性能。",
+    "advantages": "全球边缘网络覆盖，集成DDoS防护/WAF",
+    "disadvantages": "高级服务价格较高，部分区域CDN节点覆盖弱",
+    "iconBgColor": "rgba(244, 127, 42, 0.1)",
+    "iconSvg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 3L4 15H20L12 3Z\" fill=\"#F47F2A\"/></svg>"
+  },
+  {
+    "id": "openrouter",
+    "name": "OpenRouter.ai",
+    "url": "https://openrouter.ai",
+    "category": "ai",
+    "tagName": "AI",
+    "description": "聚合全球顶尖AI模型，一站式API畅享智能，开发者首选最优方案！",
+    "advantages": "全模型聚合，按需计费，极速部署",
+    "disadvantages": "模型覆盖较少，部分主流模型更新滞后",
+    "iconBgColor": "rgba(99, 102, 241, 0.1)",
+    "iconSvg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 3L20 7V17L12 21L4 17V7L12 3Z\" fill=\"#6366F1\"/></svg>"
+  },
+  {
+    "id": "astria",
+    "name": "Astria.ai",
+    "url": "https://www.astria.ai",
+    "category": "ai",
+    "tagName": "AI",
+    "description": "AI图像定制平台，快速生成个性化视觉模型，轻松打造专属创意设计。",
+    "advantages": "专属模型定制，实时渲染速度，精准风格控制",
+    "disadvantages": "功能相对单一，生成速度较慢",
+    "iconBgColor": "rgba(232, 121, 249, 0.1)",
+    "iconSvg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"#E879F9\"/></svg>"
+  },
+  {
+    "id": "github",
+    "name": "GitHub",
+    "url": "https://github.com",
+    "category": "code",
+    "tagName": "Code",
+    "description": "全球最大代码托管平台，开发者协作、版本控制、开源项目核心阵地，高效管理代码，激发创新。",
+    "advantages": "最大开发者社区，生态整合完备，品牌认知溢价",
+    "disadvantages": "私有仓库协作功能收费，界面复杂度较高",
+    "iconBgColor": "rgba(0, 0, 0, 0.05)",
+    "iconSvg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 2C6.477 2 2 6.477 2 12C2 16.418 4.865 20.166 8.839 21.489C9.339 21.581 9.521 21.28 9.521 21.017C9.521 20.781 9.513 20.032 9.508 19.203C6.726 19.795 6.139 17.88 6.139 17.88C5.684 16.735 5.032 16.435 5.032 16.435C4.12 15.809 5.097 15.822 5.097 15.822C6.101 15.889 6.629 16.846 6.629 16.846C7.521 18.39 8.97 17.927 9.539 17.672C9.631 17.042 9.889 16.579 10.175 16.319C7.954 16.056 5.62 15.206 5.62 11.429C5.62 10.339 6.01 9.446 6.649 8.747C6.546 8.494 6.203 7.587 6.747 6.195C6.747 6.195 7.587 5.927 9.497 7.236C10.295 7.015 11.15 6.904 12 6.9C12.85 6.904 13.705 7.015 14.503 7.236C16.413 5.927 17.253 6.195 17.253 6.195C17.797 7.587 17.454 8.494 17.351 8.747C17.991 9.446 18.38 10.339 18.38 11.429C18.38 15.216 16.041 16.054 13.813 16.312C14.172 16.633 14.492 17.269 14.492 18.241C14.492 19.629 14.479 20.689 14.479 21.017C14.479 21.282 14.659 21.585 15.167 21.487C19.138 20.161 22 16.416 22 12C22 6.477 17.523 2 12 2Z\" fill=\"#000000\"/></svg>"
+  },
+  {
+    "id": "ahrefs",
+    "name": "Ahrefs",
+    "url": "https://ahrefs.com",
+    "category": "seo",
+    "tagName": "SEO",
+    "description": "关键词难度工具：精准评估SEO竞争强度，助力高效选词优化。",
+    "advantages": "全球最大外链数据库，实时高频更新，功能集成度高",
+    "disadvantages": "价格较高，功能侧重SEO，PPC/社交媒体分析较弱",
+    "iconBgColor": "rgba(245, 158, 11, 0.1)",
+    "iconSvg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z\" fill=\"#F59E0B\"/><path d=\"M9 17L15 7M9 7H15V13\" stroke=\"white\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"
+  },
+  {
+    "id": "google-analytics",
+    "name": "Google Analytics",
+    "url": "https://analytics.google.com",
+    "category": "analytics",
+    "tagName": "Analytics",
+    "description": "智能分析中心：实时数据追踪，用户行为洞察，驱动精准决策优化。",
+    "advantages": "深度整合谷歌生态，实时分析与AI预测，跨平台全链路追踪",
+    "disadvantages": "数据延迟较高，隐私合规门槛高，自定义分析复杂",
+    "iconBgColor": "rgba(234, 88, 12, 0.1)",
+    "iconSvg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2V8L17 12L12 16V22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z\" fill=\"#EA580C\"/><path d=\"M12 22V16L7 12L12 8V2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z\" fill=\"#FACC15\"/></svg>"
+  }
+] 
