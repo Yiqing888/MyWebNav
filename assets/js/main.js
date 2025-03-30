@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 添加动画监测
   observeElements();
+  
+  // 初始化光影效果
+  initHoverEffects();
 });
 
 /**
@@ -31,7 +34,7 @@ async function initTools() {
     const tools = await response.json();
     
     // 获取工具列表容器
-    const toolsContainer = document.getElementById('tools-grid');
+    const toolsContainer = document.getElementById('tools-container');
     if (!toolsContainer) return;
     
     // 清空容器并隐藏加载状态
@@ -51,7 +54,7 @@ async function initTools() {
     console.error('加载工具数据失败:', error);
     
     // 显示错误信息
-    const toolsContainer = document.getElementById('tools-grid');
+    const toolsContainer = document.getElementById('tools-container');
     if (toolsContainer) {
       toolsContainer.innerHTML = `
         <div class="error-message">
@@ -69,7 +72,7 @@ async function initTools() {
  */
 function createToolCard(tool) {
   const card = document.createElement('div');
-  card.className = 'tool-card';
+  card.className = 'tool-card hover-glow';
   card.dataset.category = tool.category;
   
   card.innerHTML = `
@@ -94,7 +97,7 @@ function createToolCard(tool) {
       </div>
     </div>
     <a href="${tool.url}" class="tool-link" target="_blank">
-      <span>Visit Website</span>
+      <span>访问网站</span>
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M3.33337 12.6666L12.6667 3.33331M12.6667 3.33331H5.33337M12.6667 3.33331V10.6666" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -107,24 +110,59 @@ function createToolCard(tool) {
 /**
  * 初始化分类筛选功能
  */
-function initCategoryFilters() {
-  const filterButtons = document.querySelectorAll('.category-tabs button');
-  
-  filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      // 移除所有按钮的active类
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      
-      // 添加当前按钮的active类
-      button.classList.add('active');
-      
-      // 获取分类ID
-      const category = button.dataset.category;
-      
-      // 筛选工具
-      filterTools(category);
+async function initCategoryFilters() {
+  try {
+    // 获取分类数据
+    const pathPrefix = window.location.pathname.includes('/pages/') ? '../' : '';
+    const response = await fetch(`${pathPrefix}data/categories.json`);
+    const categories = await response.json();
+    
+    // 获取分类过滤器容器
+    const filterContainer = document.getElementById('category-filters');
+    if (!filterContainer) return;
+    
+    // 确保"全部"按钮存在
+    const allButton = filterContainer.querySelector('button[data-category="all"]');
+    if (!allButton) {
+      const allBtn = document.createElement('button');
+      allBtn.classList.add('active', 'hover-glow');
+      allBtn.dataset.category = 'all';
+      allBtn.textContent = '全部';
+      filterContainer.appendChild(allBtn);
+    }
+    
+    // 添加分类按钮
+    categories.forEach(category => {
+      // 检查是否已存在
+      if (!filterContainer.querySelector(`button[data-category="${category.id}"]`)) {
+        const button = document.createElement('button');
+        button.classList.add('hover-glow');
+        button.dataset.category = category.id;
+        button.textContent = category.name;
+        filterContainer.appendChild(button);
+      }
     });
-  });
+    
+    // 添加事件监听器
+    const filterButtons = filterContainer.querySelectorAll('button');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // 移除所有按钮的active类
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // 添加当前按钮的active类
+        button.classList.add('active');
+        
+        // 获取分类ID
+        const category = button.dataset.category;
+        
+        // 筛选工具
+        filterTools(category);
+      });
+    });
+  } catch (error) {
+    console.error('加载分类数据失败:', error);
+  }
 }
 
 /**
@@ -155,7 +193,7 @@ function filterTools(category) {
   });
   
   // 显示无结果提示
-  const toolsContainer = document.getElementById('tools-grid');
+  const toolsContainer = document.getElementById('tools-container');
   const noResultsElement = document.querySelector('.no-results');
   
   if (visibleCount === 0) {
@@ -187,6 +225,15 @@ function initSearch() {
   searchInput.addEventListener('input', () => {
     const searchTerm = searchInput.value.toLowerCase().trim();
     debouncedSearch(searchTerm);
+  });
+  
+  // 添加搜索框焦点效果
+  searchInput.addEventListener('focus', () => {
+    searchInput.parentElement.classList.add('focus');
+  });
+  
+  searchInput.addEventListener('blur', () => {
+    searchInput.parentElement.classList.remove('focus');
   });
 }
 
@@ -246,7 +293,7 @@ function searchTools(searchTerm) {
   });
   
   // 显示无结果提示
-  const toolsContainer = document.getElementById('tools-grid');
+  const toolsContainer = document.getElementById('tools-container');
   const noResultsElement = document.querySelector('.no-results');
   
   if (visibleCount === 0 && searchTerm) {
@@ -297,5 +344,55 @@ function observeElements() {
   // 观察需要动画的元素
   document.querySelectorAll('.animate-on-scroll').forEach(el => {
     observer.observe(el);
+  });
+}
+
+/**
+ * 初始化悬停光影效果
+ */
+function initHoverEffects() {
+  // 为所有带有hover-glow类的元素添加鼠标跟踪效果
+  const hoverElements = document.querySelectorAll('.hover-glow');
+  
+  hoverElements.forEach(el => {
+    el.addEventListener('mousemove', e => {
+      // 计算鼠标在元素内的相对位置(百分比)
+      const rect = el.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      
+      // 设置CSS变量用于光影效果定位
+      el.style.setProperty('--x', `${x}%`);
+      el.style.setProperty('--y', `${y}%`);
+    });
+    
+    // 鼠标离开时重置位置
+    el.addEventListener('mouseleave', () => {
+      el.style.setProperty('--x', '50%');
+      el.style.setProperty('--y', '50%');
+    });
+  });
+  
+  // 为工具卡片添加悬停时的3D倾斜效果
+  const toolCards = document.querySelectorAll('.tool-card');
+  
+  toolCards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      // 计算倾斜角度(最大±5度)
+      const tiltX = ((y / rect.height) * 10) - 5;
+      const tiltY = ((x / rect.width) * 10) - 5;
+      
+      // 应用3D变换
+      card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-15px) scale(1.03)`;
+    });
+    
+    // 鼠标离开时重置
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
   });
 } 

@@ -1,6 +1,6 @@
 # BytePilot - 网络工具精选平台
 
-BytePilot是一个精心设计的网络工具集合平台，为用户提供优质网络工具的聚合和推荐，帮助用户发现提升数字工作流的最佳工具。
+BytePilot是一个精心设计的网络工具集合平台，为开发者提供优质网络工具的聚合和推荐，帮助用户发现提升数字工作流的最佳工具。
 
 ![BytePilot 预览](assets/images/bytepilot-preview.png)
 
@@ -26,6 +26,9 @@ BytePilot专注于收集和推荐高质量的网络工具，涵盖多个关键�
 - **模块化结构** - 组件化设计，便于维护和扩展
 - **苹果风格UI** - 简洁、优雅的用户界面，遵循苹果设计理念
 - **流畅动画效果** - 使用CSS动画和JavaScript提升用户体验
+- **毛玻璃效果** - 现代毛玻璃界面设计，带来科技感
+- **交互光影** - 鼠标跟随光影效果，提升用户体验
+- **3D倾斜效果** - 卡片悬停时的立体感交互
 
 ## 项目结构
 
@@ -33,20 +36,20 @@ BytePilot专注于收集和推荐高质量的网络工具，涵盖多个关键�
 bytepilot/
 ├── assets/              # 静态资源
 │   ├── css/             # 样式文件
+│   │   ├── base.css        # 基础样式
+│   │   ├── layout.css      # 布局样式
+│   │   ├── components.css  # 组件样式
+│   │   ├── animations.css  # 动画效果
+│   │   └── techvisual.css  # 科技视觉效果
 │   ├── js/              # JavaScript文件
+│   │   └── main.js         # 主要功能脚本
 │   └── images/          # 图片资源
-├── components/          # HTML组件
-│   ├── header.html      # 网站头部组件
-│   ├── footer.html      # 网站底部组件
-│   ├── tool-card.html   # 工具卡片组件
-│   └── category-filters.html # 分类筛选组件
 ├── data/                # 数据文件
 │   ├── tools.json       # 工具数据
 │   └── categories.json  # 分类数据
-├── pages/               # 网站页面
-│   ├── index.html       # 主页
-│   └── about.html       # 关于页面
-├── index.html           # 入口文件（重定向）
+├── pages/               # 网站其他页面
+│   └── import.html      # 导入页面
+├── index.html           # 主页（入口文件）
 └── README.md            # 项目文档
 ```
 
@@ -57,17 +60,49 @@ bytepilot/
 - **搜索功能** - 快速查找特定工具
 - **响应式布局** - 在不同设备上提供最佳浏览体验
 - **动画效果** - 流畅的交互动画提升用户体验
+- **科技视觉** - 毛玻璃效果、光影效果、3D交互等现代视觉设计
 
-## 开始使用
+## 本地部署说明
+
+### 重要提示：使用本地服务器
+
+由于浏览器的安全限制，直接打开HTML文件（使用file://协议）可能导致JavaScript无法正常加载JSON数据。**强烈建议**使用本地服务器运行此项目。
 
 1. 克隆项目到本地：
 ```bash
 git clone https://github.com/yourusername/bytepilot.git
 ```
 
-2. 使用本地服务器打开项目（如使用VS Code的Live Server插件）
+2. 启动本地服务器（选择其中一种方式）：
 
-3. 访问 `http://localhost:5500` 或服务器提供的URL
+   **使用Python（推荐）**：
+   ```bash
+   cd bytepilot
+   python -m http.server
+   ```
+   然后访问 `http://localhost:8000`
+
+   **使用Node.js**：
+   ```bash
+   npm install -g http-server
+   cd bytepilot
+   http-server
+   ```
+   然后访问 `http://localhost:8080`
+
+   **使用VS Code的Live Server插件**：
+   安装Live Server插件，右键点击index.html选择"使用Live Server打开"
+
+## 常见问题
+
+1. **工具列表不显示**
+   - 请确保使用HTTP服务器运行项目，而不是直接打开HTML文件
+   - 检查浏览器控制台是否有错误信息
+   - 验证tools.json文件格式是否正确
+
+2. **图标不显示**
+   - 确保SVG图标代码格式正确
+   - 检查iconBgColor属性是否为有效的颜色值
 
 ## 自定义工具
 
@@ -83,7 +118,7 @@ git clone https://github.com/yourusername/bytepilot.git
   "description": "工具简要描述",
   "advantages": "工具优势",
   "disadvantages": "工具不足",
-  "iconBgColor": "图标背景色",
+  "iconBgColor": "图标背景色（如#ff5500）",
   "iconSvg": "SVG图标代码"
 }
 ```
@@ -95,6 +130,8 @@ git clone https://github.com/yourusername/bytepilot.git
 - [ ] 增加更多工具分类
 - [ ] 优化移动端体验
 - [ ] 添加暗色模式支持
+- [ ] 支持工具收藏功能
+- [ ] 添加工具使用统计
 
 ## 贡献指南
 

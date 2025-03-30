@@ -1,64 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BytePilot - Curated Web Tools</title>
-    <link rel="canonical" href="https://bytepilot.ai" />
-    <meta http-equiv="refresh" content="0;url=pages/index.html">
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background-color: #F5F5F7;
-            color: #1D1D1F;
-        }
-        .redirect-message {
-            text-align: center;
-            max-width: 500px;
-        }
-        .logo {
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #86868B;
-            margin-bottom: 20px;
-        }
-        a {
-            color: #007AFF;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 8px;
-            background-color: rgba(0, 122, 255, 0.1);
-            transition: background-color 0.2s ease;
-        }
-        a:hover {
-            background-color: rgba(0, 122, 255, 0.2);
-        }
-    </style>
+    <meta name="description" content="BytePilot - 一站式开发者导航平台，汇集优质开发工具与资源">
+    <meta name="keywords" content="开发者导航, 程序员工具, 开发资源, 编程工具, BytePilot">
+    <link rel="canonical" href="https://bytepilot.cn" />
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <title>BytePilot - 开发者导航 | 发现优质开发工具与资源</title>
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/techvisual.css">
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
 </head>
-<body>
-    <div class="redirect-message">
-        <div class="logo">
-            <svg width="60" height="60" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="40" height="40" rx="8" fill="rgba(0, 122, 255, 0.1)"/>
-                <path d="M20 8L28 12V20L20 24L12 20V12L20 8Z" stroke="#007AFF" stroke-width="2"/>
-                <circle cx="20" cy="20" r="4" fill="#007AFF"/>
-            </svg>
+<body class="bg-light">
+    <header class="header glass-effect">
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <img src="assets/images/logo.svg" alt="BytePilot Logo" width="40" height="40">
+                    <span>BytePilot</span>
+                </a>
+                <div class="nav-links">
+                    <a href="/" class="active">首页</a>
+                    <a href="pages/import.html">导入</a>
+                    <a href="https://github.com/yourusername/bytepilot" target="_blank">GitHub</a>
+                </div>
+            </nav>
         </div>
-        <h1>Redirecting to BytePilot</h1>
-        <p>If you are not redirected automatically, please click the link below.</p>
-        <a href="pages/index.html">Continue to BytePilot</a>
-    </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero">
+            <div class="container">
+                <h1>发现最佳开发工具与资源</h1>
+                <p>BytePilot 帮助开发者快速找到合适的开发工具，提高开发效率</p>
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-bar hover-glow" placeholder="搜索工具、分类或标签...">
+                </div>
+            </div>
+        </section>
+
+        <section class="categories">
+            <div class="container">
+                <h2>按分类浏览</h2>
+                <div class="category-tabs" id="category-filters">
+                    <!-- 分类按钮将由JavaScript动态加载 -->
+                    <button class="active hover-glow" data-category="all">全部</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools">
+            <div class="container">
+                <h2>开发者工具</h2>
+                <div class="tools-grid" id="tools-container">
+                    <div class="loading">加载工具中...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/images/logo.svg" alt="BytePilot Logo" width="32" height="32">
+                    <span>BytePilot</span>
+                </div>
+                <div class="footer-links">
+                    <a href="/">首页</a>
+                    <a href="pages/import.html">导入</a>
+                    <a href="https://github.com/yourusername/bytepilot" target="_blank">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 BytePilot. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
 </body>
 </html> 
